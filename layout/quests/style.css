@@ -1,0 +1,27 @@
+main {
+  gap: 14px;
+}
+
+
+:has(>#quests) {
+  /* width: 90%; */
+}
+
+#quests {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+  height: 100%;
+  align-content: flex-start;
+  overflow-x: auto;
+}
+
+#quests>li {
+  padding: 5px 10px;
+  background: #ddd;
+  border-radius: 5px;
+  width: max-content;
+  max-width: 252px;
+  cursor: default;
+}
