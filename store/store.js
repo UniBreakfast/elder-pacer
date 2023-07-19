@@ -21,6 +21,7 @@ class Store {
 
   async save() {
     localStorage[this.key] = JSON.stringify(this.state)
+    console.log('saved', this.key, this.state)
   }
 
   async all() {
