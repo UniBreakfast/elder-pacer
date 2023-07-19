@@ -21,6 +21,10 @@ h1 {
   margin: 0 auto;
 }
 
+h2 {
+  font-size: 24px;
+}
+
 main {
   display: grid;
   grid-template-rows: 40px minmax(0, 1fr);
@@ -55,6 +59,14 @@ form input[type=text] {
   padding: 5px 10px;
   border-radius: 5px;
   border: 2px solid #aaa;
+}
+
+form input[type=number] {
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 2px solid #aaa;
+  text-align: center;
 }
 
 .selected {
