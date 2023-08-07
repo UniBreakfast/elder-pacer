@@ -13,6 +13,8 @@
   <!-- <script src="script.js" defer></script> -->
   <script src="../-common/temp.js" defer></script>
 
+  <script type="module" src="activity-edit.js"></script>
+
   <title>Pacer - Edit Activity</title>
 </head>
 
@@ -24,14 +26,14 @@
   </header>
 
   <main>
-    <form action="javascript:">
+    <form action="javascript:" id="edit-activity">
       <label>
         Activity Title:
-        <input type="text" name="title" value="Learn Spanish 1 hour">
+        <input type="text" name="name" value="Learn Spanish 1 hour">
       </label>
 
       <div>
-        <button onclick="location.href='../activities/index.html'">Save this</button>
+        <button>Save this</button>
         <button onclick="location.href='../activities/index.html'">Remove this</button>
       </div>
     </form>
