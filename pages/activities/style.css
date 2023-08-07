@@ -17,11 +17,12 @@ main {
   overflow-x: auto;
 }
 
-#activities>li {
+#activities a {
+  display: block;
   padding: 5px 10px;
   background: #ddd;
   border-radius: 5px;
   width: max-content;
   max-width: 252px;
-  cursor: default;
+  cursor: pointer;
 }
