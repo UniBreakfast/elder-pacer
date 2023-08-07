@@ -1,21 +1,27 @@
+export { Quest }
+
+import { Store } from '../store/store.js'
+
+const store = new Store('quests')
+
 const statusDict = {
   IN_PROGRESS: 'in progress',
   COMPLETED: 'completed',
   FAILED: 'failed',
 }
 
-const quests = [
-  // {
-  //   id: 4,
-  //   activity_id: 2,
-  //   duration: 7,
-  //   progress: 4,
-  //   start_date: '2020-01-01',
-  //   end_date: '2020-01-07',
-  //   status: statusDict.IN_PROGRESS,
-  //   archived: false,
-  // },
-]
+// const quests = [
+//   {
+//     id: 4,
+//     activity_id: 2,
+//     duration: 7,
+//     progress: 4,
+//     start_date: '2020-01-01',
+//     end_date: '2020-01-07',
+//     status: statusDict.IN_PROGRESS,
+//     archived: false,
+//   },
+// ]
 
 class Quest {
   constructor(activity_id, duration, start_date=getDate()) {
@@ -31,8 +37,19 @@ class Quest {
     quests.push(this)
   }
 
-  static all() {
-    return quests
+  static async init() {
+    store.load()
+  }
+
+  static async add(activity_id, duration, start_date) {
+    const quest = new Quest(activity_id, duration, start_date)
+    await store.add(quest)
+
+    return quest
+  }
+
+  static async all() {
+    return store.all()
   }
 
   static find(id) {

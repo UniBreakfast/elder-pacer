@@ -1,0 +1,27 @@
+main {
+  gap: 14px;
+}
+
+
+:has(>#activities) {
+  /* width: 90%; */
+}
+
+#activities {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-wrap: wrap;
+  height: 100%;
+  align-content: flex-start;
+  overflow-x: auto;
+}
+
+#activities>li {
+  padding: 5px 10px;
+  background: #ddd;
+  border-radius: 5px;
+  width: max-content;
+  max-width: 252px;
+  cursor: default;
+}

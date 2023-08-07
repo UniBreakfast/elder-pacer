@@ -1,15 +1,11 @@
+export { Store }
+
 class Store {
   constructor(key) {
     this.key = key
     this.state = []
   }
 
-  static async getStore(key) {
-    const store = new Store(key)
-    await store.load()
-    return store
-  }
-  
   async load() {
     const state = localStorage[this.key]
     if (!state) {

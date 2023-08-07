@@ -1,0 +1,11 @@
+addEventListener for submit event (activity.js)
+
+serialize form data (activity.js)
+
+call add method on activity state (activity.js -> activityState.js)
+
+add activity state to activity (activityState.js)
+
+save state to data storage (activityState.js -> store.js)
+
+render results (activity.js)
