@@ -1,6 +1,7 @@
 export { Quest }
 
 import { Store } from '../store/store.js'
+import { Activity } from './activity-model.js'
 
 const store = new Store('quests')
 
@@ -24,15 +25,17 @@ const statusDict = {
 // ]
 
 class Quest {
-  constructor(activity_id, duration, start_date=getDate()) {
-    this.id = genId()
-    this.activity_id = activity_id
-    this.duration = duration
-    this.progress = 0
-    this.start_date = start_date
-    this.end_date = new Date(new Date(start_date) + duration * 24 * 60 * 60 * 1000).toISOString()
-    this.completed = statusDict.IN_PROGRESS
-    this.archived = false
+  #activity = null
+
+  constructor(params) {
+    this.id = params.id || genId()
+    this.activity_id = params.activity_id
+    this.duration = params.duration
+    this.progress = params.progress || 0
+    this.start_date = params.start_date
+    this.end_date = params.end_date || new Date(new Date(params.start_date) + params.duration * 24 * 60 * 60 * 1000).toISOString()
+    this.completed = params.completed || statusDict.IN_PROGRESS
+    this.archived = params.archived || false
   }
 
   static async init() {
@@ -40,21 +43,28 @@ class Quest {
   }
 
   static async add(activity_id, duration, start_date) {
-    const quest = new Quest(activity_id, duration, start_date)
+    const quest = new Quest({activity_id, duration, start_date})
     await store.add(quest)
 
     return quest
   }
 
   static async all() {
-    return store.all()
+    let quests = await store.all()
+    quests = quests.map(q => new Quest(q))
+
+    for (const quest of quests) {
+      quest.#activity = await Activity.find(quest.activity_id)
+    }
+
+    return quests
   }
 
-  static find(id) {
+  static async find(id) {
     return Quest.all().find(q => q.id === id)
   }
 
-  static step(id) {
+  static async step(id) {
     const quest = Quest.find(id)
     if (!quest) return false
 
@@ -65,7 +75,7 @@ class Quest {
     return true
   }
 
-  static archive(id) {
+  static async archive(id) {
     const quest = Quest.find(id)
     if (!quest) return false
 
@@ -73,7 +83,7 @@ class Quest {
     return true
   }
 
-  static filter({status, archived}) {
+  static async filter({status, archived}) {
     return Quest.all().filter(q => {
       if (status && q.status !== status) return false
       if (archived && q.archived !== archived) return false
@@ -83,6 +93,10 @@ class Quest {
 
   isActive() {
     return this.status === statusDict.IN_PROGRESS
+  }
+
+  get activity() {
+    return this.#activity
   }
 }
 
