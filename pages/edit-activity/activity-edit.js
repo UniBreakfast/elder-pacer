@@ -17,10 +17,12 @@ editForm.addEventListener('submit', async e => {
 
 async function renderForm() {
   const activity = await Activity.find(getId());
+  
   editForm.name.value = activity.name;
 }
 
 function getId() {
   const params = new URLSearchParams(window.location.search);
+
   return Number(params.get('id'));
 }

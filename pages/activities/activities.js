@@ -1,4 +1,4 @@
-import { Activity } from "../../activities-state/activity-model.js";
+import { Activity } from "../../models/activity-model.js";
 
 Activity.init();
 
@@ -11,7 +11,7 @@ async function renderActivities() {
 
   activitiesList.innerHTML = activities.map(activity => `
     <li>
-      <a href="../edit-activity/index.html?id=${activity.id}">
+      <a href="../take-quest/index.html?id=${activity.id}">
         ${activity.name}
       </a>
     </li>

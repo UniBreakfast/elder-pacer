@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head id="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+  <link rel="stylesheet" href="../-common/reset.css">
+  <link rel="stylesheet" href="../-common/base.css">
+  <link rel="stylesheet" href="../-common/temp.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- <script src="script.js" defer></script> -->
+  <script src="../-common/temp.js" defer></script>
+  <script type="module" src="quest.js"></script>
+
+  <title>Pacer - Take Quest</title>
+</head>
+
+<body id="body">
+  <header>
+    <a href="../activities/index.html">◁ Activities</a>
+    <h1>Take Quest</h1>  
+    <a href="../quests/index.html">Quests ▷</a>
+  </header>
+
+  <main>
+    <form action="javascript:">
+      <h2 id="activity-name"></h2>
+
+      <label>
+        Quest duration in days:
+        <input type="number" name="duration" min="1" value="7">
+      </label>
+
+      <div>
+        <button onclick="location.href='../quests/index.html'">Take this quest</button>
+        <button onclick="location.href='../activities/index.html'">Cancel</button>
+      </div>
+    </form>
+  </main>
+</body>
+
+</html>
