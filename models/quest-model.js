@@ -16,8 +16,8 @@ const statusDict = {
 //     activity_id: 2,
 //     duration: 7,
 //     progress: 4,
-//     start_date: '2020-01-01',
-//     end_date: '2020-01-07',
+//     start_date: '2020-01-01T00:00:00.000Z',
+//     end_date: '2020-01-07T00:00:00.000Z',
 //     status: statusDict.IN_PROGRESS,
 //     archived: false,
 //   },
@@ -33,8 +33,6 @@ class Quest {
     this.end_date = new Date(new Date(start_date) + duration * 24 * 60 * 60 * 1000).toISOString()
     this.completed = statusDict.IN_PROGRESS
     this.archived = false
-
-    quests.push(this)
   }
 
   static async init() {
